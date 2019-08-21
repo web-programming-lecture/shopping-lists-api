@@ -1,1 +1,1 @@
-# Shopping List API
+# Shopping Lists API

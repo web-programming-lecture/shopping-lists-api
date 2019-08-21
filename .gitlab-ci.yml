@@ -1,0 +1,12 @@
+image: node:latest
+
+stages:
+  - production
+
+production:
+  stage: production
+  script:
+  - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/shopping-lists-api.git
+  - git push -f -q heroku HEAD:master
+  only:
+  - master
