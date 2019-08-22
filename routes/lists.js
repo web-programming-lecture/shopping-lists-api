@@ -24,6 +24,6 @@ router.post('/:listid/items', itemController.create);
 
 // router.put('/:listid/items/:itemid', listController.update);
 
-// router.delete('/:listid/items/:itemid', itemController.delete)
+router.delete('/:listid/items/:itemid', itemController.delete)
 
 module.exports = router;

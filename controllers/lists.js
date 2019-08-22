@@ -12,7 +12,7 @@ exports.create = (req, res, next) => {
 };
 
 exports.read = (req, res, next) => {
-    Shopping.List.findOne({_id: req.params.id, userId: req.session.user.id}, (err, list) => {
+    Shopping.List.findOne({_id: req.params.id}, (err, list) => {
         if (err) return next(err);
         return res.send(list);
     });
