@@ -1,18 +1,18 @@
 var Shopping = require('../models/shopping');
 
+exports.read = (req, res, next) => {
+    Shopping.List.findOne({_id: req.params.id}, (err, list) => {
+        if (err) return next(err);
+        return res.send(list);
+    });
+};
+
 exports.create = (req, res, next) => {
     var list = new Shopping.List({
         userId: req.session.user.id,
         name: req.body.name
     });
     list.save((err, list) => {
-        if (err) return next(err);
-        return res.send(list);
-    });
-};
-
-exports.read = (req, res, next) => {
-    Shopping.List.findOne({_id: req.params.id}, (err, list) => {
         if (err) return next(err);
         return res.send(list);
     });

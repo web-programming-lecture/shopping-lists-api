@@ -13,7 +13,6 @@ var ShoppingListSchema = new Schema({
     items:  [ ShoppingItemSchema ]
 }, { versionKey: false });
 
-// Export the model
 module.exports = {
     Item: mongoose.model('Item', ShoppingItemSchema),
     List: mongoose.model('List', ShoppingListSchema)
