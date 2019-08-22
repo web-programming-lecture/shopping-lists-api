@@ -8,8 +8,8 @@ const express = require('express'),
 
 dotenv.load();
 
-//const lists = require('./routes/lists');
-const users = require('./routes/users');
+const ui = require('./routes/ui');
+const lists = require('./routes/lists');
 
 const app = express();
 
@@ -39,8 +39,8 @@ app.use(cors({ origin: true, credentials: true }));
 
 app.use(nocache());
 
-//app.use('/v2/lists', lists);
-app.use('/v2/users', users);
+app.use('/', ui);
+app.use('/api/v1/lists', lists);
 
 app.set('views', './views');
 app.set('view engine', 'pug');

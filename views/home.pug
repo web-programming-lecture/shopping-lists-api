@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+    h3 Hello, #{username}!
+        a(href='/logout') Logout
+
+    form#newList
+        input#name(type='text', name='name')
+        button(type='submit') New List
+
+    ul
+    each list in lists
+        li #{list.name} (#{list._id}) #{list.items.length} 
+            span(onclick="remove('" + list._id +"')")
+                i(class="far fa-trash-alt")
+
+block scripts
+    script.
+        document.getElementById("newList").onsubmit = function(event) {
+            event.preventDefault();
+            const params = new URLSearchParams([...new FormData(event.target).entries()]);
+            fetch("/api/v1/lists/", { method:"POST", body: params }).then(response => {
+                location.reload();
+            });
+        }
+        function remove(id) {
+            return fetch("/api/v1/lists/" + id, { method: 'DELETE' }).then(response => {
+                location.reload();
+            });
+        }

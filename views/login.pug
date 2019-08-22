@@ -1,5 +1,12 @@
-form(method='POST')
-    input#name(type='text', name='username')
-    input#password(type='password' name='password')
-    input#redirect(type="hidden", name="redirectUrl", value=redirectUrl)
-    button(type='submit') Sign up
+extends layout.pug
+
+block content
+
+    if errors
+        each err in errors
+            span=err
+
+    form(method='POST')
+        input#name(type='text', name='username')
+        input#password(type='password' name='password')
+        button(type='submit') Login

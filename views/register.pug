@@ -1,1 +1,13 @@
-h1 Register
+extends layout.pug
+
+block content
+
+    if errors
+        each err in errors
+            span=err
+
+    form(method='POST')
+        input#name(type='text', name='username')
+        input#password(type='password' name='password')
+        input#repeat(type='password' name='repeat')
+        button(type='submit') Register
