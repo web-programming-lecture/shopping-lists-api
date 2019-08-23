@@ -44,6 +44,8 @@ app.use('/api/v1/lists', lists);
 
 app.set('views', './views');
 app.set('view engine', 'pug');
+// Serve static files
+app.use('/public', express.static('public'));
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
