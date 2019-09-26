@@ -4,10 +4,12 @@ block content
 
     if errors
         each err in errors
-            span=err
-
-    form(method='POST')
-        input#name(type='text', name='username')
-        input#password(type='password' name='password')
-        input#repeat(type='password' name='repeat')
-        button(type='submit') Register
+            span.error=err
+    h1.centered Create new account
+    .form-container
+        form(method='POST')
+            input#name(type='text', name='username', placeholder='Enter username')
+            input#password(type='password' name='password', placeholder='Enter password')
+            input#repeat(type='password' name='repeat', placeholder='Repeat password')
+            button(type='submit') Register
+            a(href='/login') Already have an account? Sign in here.

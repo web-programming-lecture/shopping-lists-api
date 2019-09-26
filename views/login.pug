@@ -4,9 +4,11 @@ block content
 
     if errors
         each err in errors
-            span=err
-
-    form(method='POST')
-        input#name(type='text', name='username')
-        input#password(type='password' name='password')
-        button(type='submit') Login
+            span.error=err
+    h1.centered Login - Shoppinglist Administration
+    .form-container
+        form(method='POST')
+            input#name(type='text', name='username' placeholder='Enter username')
+            input#password(type='password' name='password' placeholder='Enter password')
+            button(type='submit') Login
+            a(href='/register') Register a new account here
