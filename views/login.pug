@@ -6,8 +6,8 @@ block content
             each err in errors
                 span.error=err
         h1.centered Login
-        .form-container
-            form(method='POST')
+        .vertical-center
+            form.column-form(method='POST')
                 input#name(type='text', name='username' placeholder='Enter username')
                 input#password(type='password' name='password' placeholder='Enter password')
                 button(type='submit') Login

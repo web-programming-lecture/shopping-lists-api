@@ -1,18 +1,21 @@
 extends layout.pug
 
 block content
-    h3 Hello, #{username}!
-        a(href='/logout') Logout
+    .main
+        .header
+            h1.app-title Shopping lists administration
+            span.greeting Hello, #{username}!
+            a.logout(href='/logout') Logout
 
-    form#newList
-        input#name(type='text', name='name', placeholder='Enter name for new shopping list..')
-        button(type='submit') New List
+        form#newList
+            input#name(type='text', name='name', placeholder='Enter name for new shopping list..')
+            button(type='submit') New List
 
-    ul
-    each list in lists
-        li #{list.name} (#{list._id}) #{list.items.length} 
-            span(onclick="remove('" + list._id +"')")
-                i(class="far fa-trash-alt")
+        ul
+        each list in lists
+            li #{list.name} (#{list._id}) #{list.items.length} 
+                span(onclick="remove('" + list._id +"')")
+                    i(class="far fa-trash-alt")
 
 block scripts
     script.
