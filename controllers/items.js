@@ -10,9 +10,27 @@ exports.create = (req, res, next) => {
         list.items.push(item);
         list.save((err, list) => {
             if (err) return next(err);
-            return res.send(list)
+            return res.send(list);
         });
     });
+};
+
+exports.update = (req, res, next) => {
+    var set = {};
+
+    if(req.body.name != undefined) set['items.$.name'] = req.body.name;
+    if(req.body.bought != undefined) set['items.$.bought'] = req.body.bought;
+
+    Shopping.List.findOneAndUpdate(
+        {_id: req.params.listid, "items._id": req.params.itemid},
+        { $set: set },
+        { new: true },
+        (err, list) => {
+            if (err) return next(err);
+            if (!list) return res.status(404).json({error: "Can not find item"});
+            return res.send(list);
+        }
+    );
 };
 
 exports.delete = (req, res, next) => {

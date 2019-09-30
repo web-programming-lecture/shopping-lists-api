@@ -10,6 +10,7 @@ html {
     min-height: 100%;
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -17,6 +18,10 @@ body {
     min-height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.fancy-font {
+    font-family: 'Kaushan Script', cursive;
 }
 
 form input[type="text"],
@@ -121,7 +126,7 @@ form.column-form button {
 
 .whole-page-form a.hint {
     text-align: end;
-    margin-top: 0.2em;
+    margin-top: 0.6em;
 }
 
 .whole-page-form a.hint:visited {
@@ -146,6 +151,7 @@ form.column-form button {
 
 .main .header h1.app-title {
     margin: 0;
+    font-size: 1.5em;
     display: inline-block;
     height: auto;
     flex-grow: 1;
@@ -229,4 +235,14 @@ form.column-form button {
 .main #shopping-lists span.delete {
     grid-area: delete;
     cursor: pointer;
+}
+
+.api-docs h2 {
+    font-size: 1.6em;
+    margin-top: 2em;
+}
+
+.api-docs .api-route {
+    width: 100%;
+    max-width: 800px;
 }

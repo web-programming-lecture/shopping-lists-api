@@ -3,14 +3,15 @@ extends layout.pug
 block content
     .main
         .header
-            h1.app-title Shoppinglists
+            h1.app-title.fancy-font Shopping lists API
             span.greeting Hello, #{username}!
             a.logout(href='/logout') Logout
 
 
         .vertical-center
+            h1.fancy-font Your Shopping lists
             .content
-                form#newList
+                form#newList(autocomplete='off')
                     input#name(type='text', name='name', placeholder='Enter name for new shopping list..')
                     button(type='submit') New List
 
@@ -19,9 +20,63 @@ block content
                         li 
                             span.name #{list.name}
                             span.items (#{list.items.length} Items)
-                            span.id #{list._id}
+                            span.id ID: #{list._id}
                             span.delete(onclick="remove('" + list._id +"')")
                                 i(class="far fa-trash-alt")
+
+        .vertical-center.api-docs
+            h2.fancy-font API Documentation
+            
+            .api-route
+                p The <b>Shopping lists API</b> provides two kinds of endpoints.
+                h5 Private Endpoints
+                p <i>Private endpoints</i> need authentication via a Cookie and therefore can only be called from within this <b>administration application.</b> Private endpoints are used to <b>list</b> all lists of the authenticated user as well as <b>create</b> and <b>delete</b> lists.
+                h5 Public Endpoints
+                p <i>Public endpoints</i> only rely on the <b>lists ID</b>. Everyone who knows a <b>lists ID</b> can get and modify the list items.
+
+            .api-route
+                h3.fancy-font Get a list
+                <code>GET /api/v1/lists/&lt;listid&gt;</code>
+
+                h5 returns the list
+                pre
+                    code.
+                        {
+                            "_id": "&lt;listid&gt;",
+                            "userId": "&lt;userid&gt;",
+                            "name": "Einkaufen gehen",
+                            "items": [
+                                {
+                                    "bought": true,
+                                    "_id": "&lt;imteid&gt;",
+                                    "name": "Bananen"
+                                },
+                                {
+                                    "bought": false,
+                                    "_id": "&lt;imteid&gt;",
+                                    "name": "Äpfel"
+                                }
+                            ]
+                        }   
+                        
+            .api-route
+                h3.fancy-font Add item to list
+                <code>POST /api/v1/lists/&lt;listid&gt;/items<br/> <br/> { name: "" }</code>
+                h5 returns the updated list (see above)
+            .api-route
+                h3.fancy-font Remove item from list
+                <code>DELETE /api/v1/lists/&lt;listid&gt;/items/&lt;itemid&gt;</code>
+                h5 returns the updated list (see above)
+            .api-route
+                h3.fancy-font Update item in list
+                <code>PUT /api/v1/lists/&lt;listid&gt;/items/&lt;itemid&gt;<br/> <br/> { "bought": true }</code>
+                h5 returns the updated list (see above)
+            .api-route
+                h3.fancy-font (private) Create new list
+            .api-route
+                h3.fancy-font (private) Delete list
+            .api-route
+                h3.fancy-font (private) Get all lists (of authenticated user)
 
 block scripts
     script.

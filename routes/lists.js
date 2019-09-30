@@ -22,7 +22,7 @@ router.get('/:id', listController.read);
 
 router.post('/:listid/items', itemController.create);
 
-// router.put('/:listid/items/:itemid', listController.update);
+router.put('/:listid/items/:itemid', itemController.update);
 
 router.delete('/:listid/items/:itemid', itemController.delete)
 

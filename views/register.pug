@@ -6,9 +6,11 @@ block content
         if errors
             each err in errors
                 span.error=err
-        h1.centered Create new account
+        h1.centered.fancy-font Shopping lists API
+        p.centered Welcome to the shopping lists API.<br>Your <b>personal API</b> to <b>Manage</b> shopping lists.
+        h2.centered.fancy-font Create new account
         .vertical-center
-            form.column-form(method='POST')
+            form.column-form(method='POST' autocomplete='off')
                 input#name(type='text', name='username', placeholder='Enter username')
                 input#password(type='password' name='password', placeholder='Enter password')
                 input#repeat(type='password' name='repeat', placeholder='Repeat password')

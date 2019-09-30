@@ -21,7 +21,9 @@ mongoose.connect(MONGO_DB_CONNECTIONSTRING, {
     auth: {
         user: MONGO_DB_USER,
         password: MONGO_DB_PASSWORD
-    }, useNewUrlParser: true
+    },
+    useNewUrlParser: true,
+    useFindAndModify: false
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
