@@ -51,8 +51,8 @@ form button:active {
 
 .vertical-center {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .centered {
@@ -60,6 +60,8 @@ form button:active {
 }
 
 form.column-form {
+    width: 100%;
+    box-sizing: border-box;
     padding: 0 50px 50px 50px;
     display: flex;
     flex-direction: column;
