@@ -3,7 +3,7 @@ extends layout.pug
 block content
     .main
         .header
-            h1.app-title Shopping lists administration
+            h1.app-title Shoppinglists
             span.greeting Hello, #{username}!
             a.logout(href='/logout') Logout
 
@@ -14,11 +14,14 @@ block content
                     input#name(type='text', name='name', placeholder='Enter name for new shopping list..')
                     button(type='submit') New List
 
-                ul
-                each list in lists
-                    li #{list.name} (#{list._id}) #{list.items.length} 
-                        span(onclick="remove('" + list._id +"')")
-                            i(class="far fa-trash-alt")
+                ul#shopping-lists
+                    each list in lists
+                        li 
+                            span.name #{list.name}
+                            span.items (#{list.items.length} Items)
+                            span.id #{list._id}
+                            span.delete(onclick="remove('" + list._id +"')")
+                                i(class="far fa-trash-alt")
 
 block scripts
     script.
