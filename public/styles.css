@@ -151,7 +151,7 @@ form.column-form button {
 
 .main .header h1.app-title {
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1em;
     display: inline-block;
     height: auto;
     flex-grow: 1;
@@ -207,6 +207,9 @@ form.column-form button {
 }
 
 @media(min-width: 600px) {
+    .main .header h1.app-title { 
+        font-size: 1.5em;
+    }
     .main #shopping-lists li {
         grid-template-columns: auto auto auto 1fr auto; 
         grid-template-areas: "name items id emtpy delete";
