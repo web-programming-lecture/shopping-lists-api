@@ -2,31 +2,34 @@ html {
     min-height: 100%;
 }
 
-body:before {
-    
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  
-  color: #444;
-  background-image: url(/public/shopping-carts.jpg);
-  filter: blur(10px);
-  background-size: cover;
-  background-position: center;
-}
-
 body {
     color: #444;
+    min-height: 100%;
 }
 
-#container {
+
+/* Whole page forms */
+.whole-page-form:before {
+    --blur-size: 10px;
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin-top: calc(0 - var(--blur-size));
+    margin-left: calc(0 - var(--blur-size));
+    height: calc(100% + 2 * var(--blur-size));
+    width: calc(100% + 2 * var(--blur-size));
+    z-index: -1;
+    
+    background-image: url(/public/shopping-carts.jpg);
+    filter: blur(var(--blur-size));
+    background-size: cover;
+    background-position: center;
+  }
+
+.whole-page-form {
     background: white;
-    padding: 1.5em 0;
     max-width: 500px;
     margin: auto;
     border: 1px solid grey;
@@ -35,7 +38,7 @@ body {
 }
 
 @media(min-width: 800px) {
-    #container {
+    .whole-page-form {
         margin-top: 5em;
     }
 }
@@ -65,7 +68,9 @@ form {
     flex-grow: 1;
 }
 
-form input{
+form input[type="text"],
+form input[type="password"] 
+{
     margin-bottom: 1em;
     padding: 0.5em 1em;
     border: none;
