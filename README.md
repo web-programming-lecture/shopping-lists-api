@@ -106,3 +106,4 @@ Make sure you configure the environment variable for the MongoDB Connection and 
 ### TODO:
 - Better ValidationError handling
 - Provide Swagger UI
+- Refactor to use [NestJS](https://docs.nestjs.com/)?
