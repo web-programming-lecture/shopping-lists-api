@@ -20,11 +20,11 @@ All data (users, shopping lists, shopping list items) is stored in a MongoDB.
 ### About this project
 
 ```css
-│   README.md     /* You are here */
-│   package.json  /* Package info, main scripts, dependencies to install */
-│   app.js        /* Main file */
-│   .env          /* Setup DB Connection Credentials here */
-│   .gitignore    /* Exclude files (private, npm packages) from git */
+│   README.md      /* You are here */
+│   package.json   /* Package info, main scripts, dependencies to install */
+│   app.js    <--- /* Main file. Start here. */
+│   .env           /* Setup DB Connection Credentials here */
+│   .gitignore     /* Exclude files (private, npm packages) from git */
 │
 └───routes
 │   │   api.js    /* API Routes (/api/v1/lists, ...) mapped to controller functions */
