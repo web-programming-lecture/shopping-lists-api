@@ -80,23 +80,24 @@ MONGO_DB_CONNECTIONSTRING=<connectionstring>
 ```
 Make sure the file is excluded from git (see `.gitignore`). And not stored/pushed to the remote repository!
 
-### Development Server
+### Development
 
-First install the dependencies using npm (make sure you installed [NodeJs](https://nodejs.org/en/))
-```
-npm install
-```
++ **1** First install the dependencies using npm (make sure you installed [NodeJs](https://nodejs.org/en/))
+    ```
+    npm install
+    ```
++ **2** Choose:
+  - **2a** Start a server with file watch hat restarts when changing files using nodemon:
+    ```
+    npm install -g nodemon
+    nodemon app.js
+    ```
 
-To start a file watch server you can use nodemon:
-```
-npm install -g nodemon
-nodemon app.js
-```
-
-To just start the server without watching files use:
-```
-npm run start
-```
+  - **2b** Just start the server without watching files:
+    ```
+    npm run start
+    ```
++ **3** Open Browser [http://localhost:8081](http://localhost:8081)
 
 ### Deploy to Heroku / zeit.co
 
