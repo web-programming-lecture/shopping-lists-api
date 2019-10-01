@@ -9,7 +9,7 @@ const express = require('express'),
 dotenv.load();
 
 const ui = require('./routes/ui');
-const lists = require('./routes/lists');
+const api = require('./routes/api');
 
 const app = express();
 
@@ -39,7 +39,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(nocache());
 
 app.use('/', ui);
-app.use('/api/v1/lists', lists);
+app.use('/api/v1/lists', api);
 
 app.set('views', './views');
 app.set('view engine', 'pug');
