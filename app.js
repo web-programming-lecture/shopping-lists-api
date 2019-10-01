@@ -14,13 +14,10 @@ const lists = require('./routes/lists');
 const app = express();
 
 // Set up mongoose connection
-const MONGO_DB_USER = process.env.MONGO_DB_USER;
-const MONGO_DB_PASSWORD = process.env.MONGO_DB_PASSWORD;
-const MONGO_DB_CONNECTIONSTRING = process.env.MONGO_DB_CONNECTIONSTRING;
-mongoose.connect(MONGO_DB_CONNECTIONSTRING, {
+mongoose.connect(process.env.MONGO_DB_CONNECTIONSTRING, {
     auth: {
-        user: MONGO_DB_USER,
-        password: MONGO_DB_PASSWORD
+        user: process.env.MONGO_DB_USER,
+        password: process.env.MONGO_DB_PASSWORD
     },
     useNewUrlParser: true,
     useFindAndModify: false
