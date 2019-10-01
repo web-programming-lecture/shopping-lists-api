@@ -1,5 +1,22 @@
 # Shopping Lists API
 
+The Shopping Lists API is a NodeJs web application to manage shopping lists.  
+
+It provides an admin ui, where you can
+- register an account
+- login to your account
+- create new lists
+- delete lists
+- access the API documentation
+
+It also provides an API where you can:  
+- add items to a list
+- remove items from a list
+- mark items as *bought*
+- edit items
+
+All data (users, shopping lists, shopping list items) is stored in a MongoDB.
+
 ### About this project
 
 ```css
@@ -32,6 +49,24 @@
 │   │   users.js     /* Declare the models for users incl. password hashing */
 
 ```
+
+#### Packages used:
+
+##### [express](https://github.com/expressjs/express/)
+
+##### [(express) body-parser](https://github.com/expressjs/body-parser)
+
+##### [express-session](https://github.com/expressjs/session)
+
+##### [mongoose](https://github.com/Automattic/mongoose/)
+
+##### [pug](https://github.com/pugjs/pug)
+
+##### Utils
+**[dotenv](https://github.com/motdotla/dotenv)**:  
+**[(express) cors](https://github.com/expressjs/cors)**:  
+**[nocache](https://github.com/helmetjs/nocache)**:  
+**[bcryptjs](https://github.com/dcodeIO/bcrypt.js)**:  
 
 ### Configure the MongoDB Database Connection
 
@@ -70,3 +105,4 @@ Make sure you configure the environment variable for the MongoDB Connection and 
 
 ### TODO:
 - Better ValidationError handling
+- Provide Swagger UI
