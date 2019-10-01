@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ShoppingItemSchema = new Schema({
-    name:   {
+    name: {
         type: String,
         required: true,
         maxlength: 200
@@ -21,12 +21,12 @@ var ShoppingListSchema = new Schema({
         required: true,
         ref: 'User'
     },
-    name:   {
+    name: {
         type: String,
         required: true,
         maxlength: 200
     },
-    items:  [ ShoppingItemSchema ]
+    items: [ShoppingItemSchema]
 }, { versionKey: false });
 
 module.exports = {

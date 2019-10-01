@@ -7,14 +7,15 @@ var UserSchema = new Schema({
     username: {
         type: String,
         required: [true, "Username is required."],
-        unique : [true, "Username is already taken."],
+        unique: [true, "Username is already taken."],
         maxlength: [100, "Username can not exceed 100 characters."],
         minlength: [6, "Username must be atleast 6 characters."]
     },
     password: {
         type: String,
         required: [true, "Password is required."],
-        minlength: [6, "Password must be at least 6 characters."] }
+        minlength: [6, "Password must be at least 6 characters."]
+    }
 }, { versionKey: false });
 
 UserSchema.pre('save', function (next) {

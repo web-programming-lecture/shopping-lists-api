@@ -1,10 +1,10 @@
 const express = require('express'),
-      bodyParser = require('body-parser'),
-      mongoose = require('mongoose'),
-      dotenv = require('dotenv'),
-      cors = require('cors'),
-      nocache = require('nocache'),
-      session = require('express-session');
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    dotenv = require('dotenv'),
+    cors = require('cors'),
+    nocache = require('nocache'),
+    session = require('express-session');
 
 dotenv.load();
 
@@ -26,7 +26,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
     secret: '48afd9ff279cbc1f30e6b56',

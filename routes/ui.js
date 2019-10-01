@@ -15,7 +15,7 @@ function userMustBeUnauthenticated(req, res, next) {
 }
 
 router.get('/', userMustBeAuthenticated, (req, res) => {
-    Shopping.List.find({userId: req.session.user.id}, (err, lists) => {
+    Shopping.List.find({ userId: req.session.user.id }, (err, lists) => {
         return res.render('home', {
             username: req.session.user.username,
             lists: lists
@@ -28,23 +28,23 @@ router.get('/login', userMustBeUnauthenticated, (req, res) => {
 });
 
 router.post('/login', userMustBeUnauthenticated, (req, res) => {
-    if (!req.body.username) return res.status(400).render("login", { errors: ["Please provide a username."]});
-    if (!req.body.password) return res.status(400).render("login", { errors: ["Please provide a password."]});
+    if (!req.body.username) return res.status(400).render("login", { errors: ["Please provide a username."] });
+    if (!req.body.password) return res.status(400).render("login", { errors: ["Please provide a password."] });
     User.findOne({ username: req.body.username }, (err, user) => {
         if (err) return res.status(401).render("login", { errors: ["Error while logging in."] });
-        if (!user) return res.status(401).render("login", { errors: ["Wrong username and password."]});
+        if (!user) return res.status(401).render("login", { errors: ["Wrong username and password."] });
         user.comparePassword(user.password, req.body.password, (err, isMatch) => {
-            if (err) return res.status(401).render("login", { errors: ["Wrong username and password."]});
+            if (err) return res.status(401).render("login", { errors: ["Wrong username and password."] });
             if (isMatch) {
                 const session = req.session;
                 session.user = {
-                  id: user._id,
-                  username: user.username
+                    id: user._id,
+                    username: user.username
                 };
                 session.isAuthenticated = true;
                 return res.redirect(301, "/");
             } else {
-                return res.status(401).render("login", { errors: ["Wrong username and password."]});
+                return res.status(401).render("login", { errors: ["Wrong username and password."] });
             }
         });
     });
@@ -55,10 +55,10 @@ router.get('/register', userMustBeUnauthenticated, (req, res) => {
 });
 
 router.post('/register', userMustBeUnauthenticated, (req, res) => {
-    if (!req.body.username) return res.status(400).render("register", { errors: ["Please provide a username."]});
-    if (!req.body.password) return res.status(400).render("register", { errors: ["Please provide a password."]});
-    if (!req.body.repeat) return res.status(400).render("register", { errors: ["Please repeat the password."]});
-    if (req.body.password !== req.body.repeat) return res.status(400).render("register", { errors: ["The passwords do not match."]});
+    if (!req.body.username) return res.status(400).render("register", { errors: ["Please provide a username."] });
+    if (!req.body.password) return res.status(400).render("register", { errors: ["Please provide a password."] });
+    if (!req.body.repeat) return res.status(400).render("register", { errors: ["Please repeat the password."] });
+    if (req.body.password !== req.body.repeat) return res.status(400).render("register", { errors: ["The passwords do not match."] });
 
     var user = new User({
         username: req.body.username,

@@ -1,7 +1,7 @@
 var Shopping = require('../models/shopping');
 
 exports.read = (req, res, next) => {
-    Shopping.List.findOne({_id: req.params.id}, (err, list) => {
+    Shopping.List.findOne({ _id: req.params.id }, (err, list) => {
         if (err) return next(err);
         return res.send(list);
     });
@@ -19,8 +19,8 @@ exports.create = (req, res, next) => {
 };
 
 exports.readAll = (req, res, next) => {
-    Shopping.List.find({userId: req.session.user.id}, (err, lists) => {
-        if(err) return next(err);
+    Shopping.List.find({ userId: req.session.user.id }, (err, lists) => {
+        if (err) return next(err);
         return res.send(lists);
     });
 };
@@ -28,6 +28,6 @@ exports.readAll = (req, res, next) => {
 exports.delete = (req, res, next) => {
     Shopping.List.findOneAndRemove({ _id: req.params.id, userId: req.session.user.id }, (err) => {
         if (err) return next(err);
-        return res.status(200).json({ message:'Deleted successfully!' });
+        return res.status(200).json({ message: 'Deleted successfully!' });
     });
 };
