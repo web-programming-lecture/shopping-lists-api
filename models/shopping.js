@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var ShoppingItemSchema = new Schema({
+const ShoppingItemSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -15,7 +15,7 @@ var ShoppingItemSchema = new Schema({
     },
 });
 
-var ShoppingListSchema = new Schema({
+const ShoppingListSchema = new Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,

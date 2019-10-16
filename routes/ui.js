@@ -1,8 +1,8 @@
-var express = require('express'),
+const express = require('express'),
     User = require('../models/users'),
     Shopping = require('../models/shopping');
 
-var router = express.Router();
+const router = express.Router();
 
 // Ensure user is authenticated, redirect to login if not.
 function isAuthenticated(req, res, next) {
@@ -61,7 +61,7 @@ router.post('/register', isUnauthenticated, (req, res) => {
     if (!req.body.repeat) return res.status(400).render("register", { errors: ["Please repeat the password."] });
     if (req.body.password !== req.body.repeat) return res.status(400).render("register", { errors: ["The passwords do not match."] });
 
-    var user = new User({
+    const user = new User({
         username: req.body.username,
         password: req.body.password
     });

@@ -1,4 +1,4 @@
-var Shopping = require('../models/shopping');
+const Shopping = require('../models/shopping');
 
 exports.read = (req, res, next) => {
     Shopping.List.findOne({ _id: req.params.id }, (err, list) => {
@@ -8,7 +8,7 @@ exports.read = (req, res, next) => {
 };
 
 exports.create = (req, res, next) => {
-    var list = new Shopping.List({
+    const list = new Shopping.List({
         userId: req.session.user.id,
         name: req.body.name
     });

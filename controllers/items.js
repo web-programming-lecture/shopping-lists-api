@@ -1,12 +1,12 @@
-var Shopping = require('../models/shopping');
+const Shopping = require('../models/shopping');
 
 exports.create = (req, res, next) => {
     Shopping.List.findOne({ _id: req.params.listid }, (err, list) => {
         if (err) return next(err);
-        var item = new Shopping.Item({
+        let item = new Shopping.Item({
             name: req.body.name,
             bought: req.body.bought
-        })
+        });
         list.items.push(item);
         list.save((err, list) => {
             if (err) return next(err);
@@ -16,7 +16,7 @@ exports.create = (req, res, next) => {
 };
 
 exports.update = (req, res, next) => {
-    var set = {};
+    let set = {};
 
     if (req.body.name != undefined) set['items.$.name'] = req.body.name;
     if (req.body.bought != undefined) set['items.$.bought'] = req.body.bought;

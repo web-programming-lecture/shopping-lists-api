@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-
-var listController = require('../controllers/lists'),
+const express = require('express'),
+    listController = require('../controllers/lists'),
     itemController = require('../controllers/items');
+
+const router = express.Router();
 
 function isAuthenticated(req, res, next) {
     if (!req.session.isAuthenticated) return res.sendStatus(401);
@@ -17,7 +17,6 @@ router.post('/', isAuthenticated, listController.create);
 router.delete('/:id', isAuthenticated, listController.delete);
 
 // Public Actions
-
 router.get('/:id', listController.read);
 
 router.post('/:listid/items', itemController.create);
