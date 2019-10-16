@@ -135,6 +135,10 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.get('/home', (req, res) => {
+    const lists = [
+      { name: "List 1", _id: 1 },
+      { name: "List 2", _id: 2 }
+    ];
     return res.render('home', { lists: lists});
 });
 ```
@@ -145,8 +149,21 @@ ul#lists
   each list in lists
     li 
       span.name #{list.name}
-      span.id ID: #{list._id}
+      span ID: #{list._id}
 ...
+```
+`outputs`
+```html
+<ul id="lists">
+  <li>
+    <span class="name">List 1</span>
+    <span>ID: 1</span>
+  </li>
+  <li>
+    <span class="name">List 2</span>
+    <span>ID: 2</span>
+  </li>
+</ul>
 ```
 
 ##### [body-parser](https://github.com/expressjs/body-parser)
@@ -244,7 +261,8 @@ builds to:
 </ul>
 ```
 
-##### Utils
+##### Other Utils used
+
 **[dotenv](https://github.com/motdotla/dotenv)**: Loads environment variables (e.g. the database credentials) from `.env` file for NodeJs projects. For production mode the environment is configured by environment variables.    
 **[cors](https://github.com/expressjs/cors)**: Configure [CORS](https://developer.mozilla.org/de/docs/Web/HTTP/CORS) Headers.  
 **[nocache](https://github.com/helmetjs/nocache)**: Disable Caching for API Responses.  
