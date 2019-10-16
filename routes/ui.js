@@ -5,18 +5,18 @@ var express = require('express'),
 var router = express.Router();
 
 // Ensure user is authenticated, redirect to login if not.
-function authenticated(req, res, next) {
+function isAuthenticated(req, res, next) {
     if (!req.session.isAuthenticated) return res.redirect(301, "/login");
     next();
 }
 
 // Ensure user is not authenticated, redirect to home if user is authenticated.
-function unauthenticated(req, res, next) {
+function isUnauthenticated(req, res, next) {
     if (req.session.isAuthenticated) return res.redirect(301, "/");
     next();
 }
 
-router.get('/', authenticated, (req, res) => {
+router.get('/', isAuthenticated, (req, res) => {
     Shopping.List.find({ userId: req.session.user.id }, (err, lists) => {
         return res.render('home', {
             username: req.session.user.username,
@@ -25,11 +25,11 @@ router.get('/', authenticated, (req, res) => {
     });
 });
 
-router.get('/login', unauthenticated, (req, res) => {
+router.get('/login', isUnauthenticated, (req, res) => {
     return res.render('login');
 });
 
-router.post('/login', unauthenticated, (req, res) => {
+router.post('/login', isUnauthenticated, (req, res) => {
     if (!req.body.username) return res.status(400).render("login", { errors: ["Please provide a username."] });
     if (!req.body.password) return res.status(400).render("login", { errors: ["Please provide a password."] });
 
@@ -51,11 +51,11 @@ router.post('/login', unauthenticated, (req, res) => {
     });
 });
 
-router.get('/register', unauthenticated, (req, res) => {
+router.get('/register', isUnauthenticated, (req, res) => {
     return res.render('register');
 });
 
-router.post('/register', unauthenticated, (req, res) => {
+router.post('/register', isUnauthenticated, (req, res) => {
     if (!req.body.username) return res.status(400).render("register", { errors: ["Please provide a username."] });
     if (!req.body.password) return res.status(400).render("register", { errors: ["Please provide a password."] });
     if (!req.body.repeat) return res.status(400).render("register", { errors: ["Please repeat the password."] });
