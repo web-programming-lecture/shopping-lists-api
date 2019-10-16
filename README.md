@@ -1,7 +1,7 @@
 # Shopping Lists API
 
 The Shopping Lists API is a NodeJs web application to manage shopping lists.  
-It is used by students of a web programming course to build their own client applications, or can be forked to build own APIs.  
+It is used by students of a web programming course to build their own client applications, or can be forked as template to build custom APIs.  
 
 It provides an admin ui, where you can
 - register an account
