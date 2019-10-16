@@ -1,6 +1,7 @@
 # Shopping Lists API
 
 The Shopping Lists API is a NodeJs web application to manage shopping lists.  
+It is used by students of a web programming course to build their own client applications, or can be forked to build own APIs.  
 
 It provides an admin ui, where you can
 - register an account
@@ -15,7 +16,7 @@ It also provides an API where you can:
 - mark items as *bought*
 - edit items
 
-All data (users, shopping lists, shopping list items) is stored in a MongoDB.
+All data (users, shopping lists, shopping list items) is stored in a [MongoDB](https://www.mongodb.com/).
 
 ### About this project
 
