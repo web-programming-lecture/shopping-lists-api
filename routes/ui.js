@@ -10,7 +10,7 @@ function userMustBeAuthenticated(req, res, next) {
 }
 
 function userMustBeUnauthenticated(req, res, next) {
-    if (req.session.isAuthenticated) return res.redirect(301, "/")
+    if (req.session.isAuthenticated) return res.redirect(301, "/");
     next();
 }
 
@@ -64,6 +64,7 @@ router.post('/register', userMustBeUnauthenticated, (req, res) => {
         username: req.body.username,
         password: req.body.password
     });
+
     user.save((err, user) => {
         if (err) return res.status(400).render('register', { errors: [err.message] });
         return res.redirect(301, '/login');
