@@ -249,3 +249,17 @@ form.column-form button {
     width: 100%;
     max-width: 800px;
 }
+
+.github-icon {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 32px;
+    height: 32px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.github-icon:hover {
+    opacity: 1;
+    fill: black;
+}
