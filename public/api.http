@@ -1,0 +1,31 @@
+@baseUrl = https://shopping-lists-api.herokuapp.com
+// ID der Liste hier eintragen
+@listId = ""
+// ID des Items hier eintragen
+@itemId = ""
+
+### Liste abrufen
+GET {{baseUrl}}/api/v1/lists/{{listId}}
+
+
+
+### Item zur Liste hinzufügen
+POST {{baseUrl}}/api/v1/lists/{{listId}}/items
+content-type: application/json
+
+{ "name": "Bier" }
+
+
+
+### Item auf Liste aktualisieren
+PUT {{baseUrl}}/api/v1/lists/{{listId}}/items/{{itemId}}
+content-type: application/json
+
+{ "bought": true }
+
+
+
+### Item aus Liste löschen
+DELETE {{baseUrl}}/api/v1/lists/{{listId}}/items/{{itemId}}
+
+
