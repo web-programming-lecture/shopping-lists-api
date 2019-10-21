@@ -270,6 +270,14 @@ form.column-form button {
     flex-direction: row;
     align-items: center;
 }
+
 .api-key-container > span {
     margin: 15px;
+}
+
+code.colored {
+    background-color: #333;
+    display: block;
+    color: #eee;
+    padding: 5px;
 }

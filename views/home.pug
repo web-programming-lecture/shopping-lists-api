@@ -48,11 +48,11 @@ block content
 
             .api-route
                 h3.fancy-font Get a list
-                <code>GET /api/v1/lists/&lt;listid&gt;</code>
+                <code class="colored">GET /api/v1/lists/&lt;listid&gt;</code>
 
                 h5 returns the list
                 pre
-                    code.
+                    code.colored.
                         {
                             "_id": "&lt;listid&gt;",
                             "userId": "&lt;userid&gt;",
@@ -73,22 +73,53 @@ block content
                         
             .api-route
                 h3.fancy-font Add item to list
-                <code>POST /api/v1/lists/&lt;listid&gt;/items<br/> <br/> { name: "" }</code>
+                pre
+                    code.colored
+                        |POST /api/v1/lists/&lt;listid&gt;/items
+                        |Content-Type: application/json
+                        |
+                        |{ "name": "" }
+                        
                 h5 returns the updated list (see above)
             .api-route
                 h3.fancy-font Remove item from list
-                <code>DELETE /api/v1/lists/&lt;listid&gt;/items/&lt;itemid&gt;</code>
+                <code class="colored">DELETE /api/v1/lists/&lt;listid&gt;/items/&lt;itemid&gt;</code>
                 h5 returns the updated list (see above)
             .api-route
                 h3.fancy-font Update item in list
-                <code>PUT /api/v1/lists/&lt;listid&gt;/items/&lt;itemid&gt;<br/> <br/> { "bought": true }</code>
+                pre
+                    code.colored
+                        |PUT /api/v1/lists/&lt;listid&gt;/items/&lt;itemid&gt;
+                        |Content-Type: application/json
+                        |
+                        |{ "bought": true }
+
                 h5 returns the updated list (see above)
             .api-route
+                h3.fancy-font (private) Get all lists (of authenticated user)
+                pre
+                    code.colored
+                        |GET /api/v1/lists
+                        |Authorization &lt;API Key&gt;
+
+                h5 returns an array of lists (see above)
+            .api-route
                 h3.fancy-font (private) Create new list
+                pre
+                    code.colored
+                        |POST /api/v1/lists
+                        |Authorization: &lt;API Key&gt;
+                        |Content-Type: application/json
+                        |
+                        |{ "name": "" }
+
+                h5 returns the created list (see above)
             .api-route
                 h3.fancy-font (private) Delete list
-            .api-route
-                h3.fancy-font (private) Get all lists (of authenticated user)
+                pre
+                    code.colored
+                        |DELETE /api/v1/lists/&lt;listid&gt;
+                        |Authorization: &lt;API Key&gt;
 
 block scripts
     script.
