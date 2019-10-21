@@ -23,6 +23,17 @@ block content
                             span.id ID: #{list._id}
                             span.delete(onclick="remove('" + list._id +"')")
                                 i(class="far fa-trash-alt")
+        .vertical-center.api-docs
+            h2.fancy-font API Key
+
+            .api-route
+                p The API Key can be used to create, delete and list all shopping lists of the user.It has to be send in the <code>Authorization</code> HTTP Header. Do not share your API Key with others.
+
+            div.api-key-container
+                span 
+                    b #{ apiKey || 'Generate your API Key →' }
+                form#apiKey(autocomplete='off' onsubmit='updateApiKey()')
+                    button(type='submit') Generate new API Key
 
         .vertical-center.api-docs
             h2.fancy-font API Documentation
@@ -92,4 +103,10 @@ block scripts
             return fetch("/api/v1/lists/" + id, { method: 'DELETE' }).then(response => {
                 location.reload();
             });
+        }
+        function updateApiKey() {
+            return fetch("/updateApiKey", { method: 'POST' })
+                .then(response => {
+                    location.reload();
+                });
         }

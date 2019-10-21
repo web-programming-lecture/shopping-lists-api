@@ -1,15 +1,31 @@
 const express = require('express'),
+    User = require('../models/users'),
     listController = require('../controllers/lists'),
     itemController = require('../controllers/items');
 
 const router = express.Router();
 
 function isAuthenticated(req, res, next) {
-    if (!req.session.isAuthenticated) return res.sendStatus(401);
-    next();
+    if (req.headers.authorization) {
+        User.findOne(
+            { apiKey: req.headers.authorization },
+            (err, user) => {
+                if (err) return res.sendStatus(401);
+                req.session.isAuthenticated = true;
+                req.session.user = {
+                    id: user.id,
+                    username: user.username
+                };
+                next();
+            }
+        );
+    } else {
+        if (!req.session.isAuthenticated) return res.sendStatus(401);
+        next();
+    }
 }
 
-// Private Actions
+// Private Actions (Session Cookie or API Key in Authorization Header)
 router.get('/', isAuthenticated, listController.readAll);
 
 router.post('/', isAuthenticated, listController.create);
