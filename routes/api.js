@@ -10,7 +10,7 @@ function isAuthenticated(req, res, next) {
         User.findOne(
             { apiKey: req.headers.authorization },
             (err, user) => {
-                if (err) return res.sendStatus(401);
+                if (err || user == null) return res.sendStatus(401);
                 req.session.isAuthenticated = true;
                 req.session.user = {
                     id: user.id,
