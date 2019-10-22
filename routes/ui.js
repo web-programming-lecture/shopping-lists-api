@@ -1,7 +1,7 @@
 const express = require('express'),
     User = require('../models/users'),
     Shopping = require('../models/shopping'),
-    uuidv4 = require('uuid/v4');
+    crypto = require("crypto");
 
 const router = express.Router();
 
@@ -80,7 +80,7 @@ router.post('/register', isUnauthenticated, (req, res) => {
 
 router.post('/updateApiKey', isAuthenticated, (req, res) => {
     let set = {
-        'apiKey': uuidv4()
+        'apiKey': crypto.randomBytes(16).toString("hex")
     };
     User.findOneAndUpdate(
         { _id: req.session.user.id },
