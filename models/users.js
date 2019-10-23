@@ -15,11 +15,15 @@ const UserSchema = new Schema({
         type: String,
         required: [true, "Password is required."],
         minlength: [6, "Password must be at least 6 characters."]
+    },
+    apiKey: {
+        type: String
     }
 }, { versionKey: false });
 
 UserSchema.pre('save', function (next) {
     let user = this;
+
     // only hash the password if it has been modified (or is new)
     if (!user.isModified('password')) return next();
 

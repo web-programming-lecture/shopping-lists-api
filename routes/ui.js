@@ -1,6 +1,7 @@
 const express = require('express'),
     User = require('../models/users'),
-    Shopping = require('../models/shopping');
+    Shopping = require('../models/shopping'),
+    crypto = require("crypto");
 
 const router = express.Router();
 
@@ -17,12 +18,16 @@ function isUnauthenticated(req, res, next) {
 }
 
 router.get('/', isAuthenticated, (req, res) => {
-    Shopping.List.find({ userId: req.session.user.id }, (err, lists) => {
+    Promise.all([
+        User.findById(req.session.user.id),
+        Shopping.List.find({ userId: req.session.user.id })
+      ]).then( ([ user, lists ]) => {
         return res.render('home', {
             username: req.session.user.username,
+            apiKey: user.apiKey,
             lists: lists
         });
-    });
+      });
 });
 
 router.get('/login', isUnauthenticated, (req, res) => {
@@ -70,6 +75,23 @@ router.post('/register', isUnauthenticated, (req, res) => {
         if (err) return res.status(400).render('register', { errors: [err.message] });
         return res.redirect(301, '/login');
     });
+});
+
+
+router.post('/updateApiKey', isAuthenticated, (req, res) => {
+    let set = {
+        'apiKey': crypto.randomBytes(16).toString("hex")
+    };
+    User.findOneAndUpdate(
+        { _id: req.session.user.id },
+        { $set: set },
+        { new: true },
+        (err, user) => {
+            if (err) return next(err);
+            if (!user) return res.status(404).json({ error: "Can not generate new API Key." });
+            return res.send();
+        }
+    );
 });
 
 router.get('/logout', (req, res) => {
