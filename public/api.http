@@ -1,4 +1,6 @@
 @baseUrl = https://shopping-lists-api.herokuapp.com
+// API Key
+@apiKey = ""
 // ID der Liste hier eintragen
 @listId = ""
 // ID des Items hier eintragen
@@ -29,3 +31,19 @@ content-type: application/json
 DELETE {{baseUrl}}/api/v1/lists/{{listId}}/items/{{itemId}}
 
 
+### Alle Listen des Users abrufen (private)
+GET {{baseUrl}}/api/v1/lists
+Authorization: {{apiKey}}
+
+
+### Neue Liste anlegen (private)
+POST {{baseUrl}}/api/v1/lists
+Authorization: {{apiKey}}
+content-type: application/json
+
+{ "name": "Neue Liste" }
+
+
+### Liste löschen (private)
+DELETE {{baseUrl}}/api/v1/lists/{{listId}}
+Authorization: {{apiKey}}
