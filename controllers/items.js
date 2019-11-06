@@ -3,6 +3,8 @@ const Shopping = require('../models/shopping');
 exports.create = (req, res, next) => {
     Shopping.List.findOne({ _id: req.params.listid }, (err, list) => {
         if (err) return next(err);
+        if (!list) return res.status(404).json({ error: "Can not create item" });
+
         let item = new Shopping.Item({
             name: req.body.name,
             bought: req.body.bought
@@ -36,6 +38,8 @@ exports.update = (req, res, next) => {
 exports.delete = (req, res, next) => {
     Shopping.List.findOne({ _id: req.params.listid }, (err, list) => {
         if (err) return next(err);
+        if (!list) return res.status(404).json({ error: "Can not delete item" });
+
         let item = list.items.id(req.params.itemid);
         if (!item) return res.status(400).json({ error: "Can not find item" }); // TODO: Better Error Handling
         item.remove();
